@@ -5,8 +5,8 @@ Phoebe Evans:
   Username:
   Email:
 Lauren Glaser:
-  Username: 
-  Email:
+  Username: laurennikolle
+  Email: 
 Mathias Kana Sounna:
   Username:
   Email:
