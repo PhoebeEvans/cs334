@@ -1,12 +1,15 @@
-Ty Bergman:
+Ty Bergman
   Username:
   Email: 
-Phoebe Evans:
+  
+Phoebe Evans
   Username:
   Email:
-Lauren Glaser:
+  
+Lauren Glaser
   Username: laurennikolle
   Email: glaserl@enmu.edu
-Mathias Kana Sounna:
+  
+Mathias Kana Sounna
   Username:
   Email:
