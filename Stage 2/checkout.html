@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Ice Cream Shop</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/checkoutCSS.css" rel="stylesheet" type="text/css"/>
+        
+        
+    </head>
+    
+    
+    <body >
+        
+
+        <div class="container third">
+            <header>
+                <div class="row b second" style="padding: 20px; margin-top: 10px;">
+                    
+                    <div class="col-md-2 left">
+                        <a  href="#contact" >Contact</a>
+                    </div>
+
+                    <div class="col-md-8 center" > 
+                        <a href="index.html"><img src="images/logop1sprinkles.png" alt="" class="logo"/></a>
+                    </div>
+
+                    <div class="col-md-2 right" > 
+                        <div class="menu row">
+                            <a href="index.html" class="active">
+                                <div class="wrapperDiv">
+                                    <div id="title">Home</div>
+                                    <div id="sprinkles" class="sprinkles">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="index.html#porfolio">
+                                <div class="wrapperDiv">
+                                    <div id="title">Shop</div>
+                                    <div id="sprinkles" class="sprinkles">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="checkout.html">
+                                <div class="wrapperDiv">
+                                    <div id="title">Cart</div>
+                                    <div id="sprinkles" class="sprinkles">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="login.html">
+                                <div class="wrapperDiv">
+                                    <div id="title">Sign In</div>
+                                    <div id="sprinkles" class="sprinkles">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div><!-- comment -->
+            </header>
+              
+            
+            <div class="row">
+                <div class="col-md-1 b sixth" id="leftside"></div>
+
+                <div class="col-md-10">
+                    <div class="row center tall b" >
+                        <h1 >Checkout</h1>
+                    </div> 
+
+                    <div class="row tall">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12 tall"></div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-11"> 
+                                
+                                    <h2 >Order</h2><!-- comment -->
+                                    <div >  
+                                        <table class="order container">
+                                            <tr class="head doubleline">
+                                                <td class="col-md-8 "><h4>Ice Cream</h4></td>
+                                                <td class="col-md-4 r "><h4>Cost</h4></td><!-- comment -->
+                                            </tr>
+                                            <tr >
+                                                <td class="col-md-8">Medium Chocolate Ice Cream</td>
+                                                <td class="col-md-4 r">$2.25</td><!-- comment -->
+                                            </tr>
+                                            <tr>
+                                                <td>Medium Chocolate Ice Cream</td>
+                                                <td  class="col-md-4 r">$2.25</td><!-- comment -->
+                                            </tr><!-- comment -->
+                                            <tr>
+                                                <td>Medium Twist Ice Cream</td>
+                                                <td  class="col-md-4 r">$2.25</td><!-- comment -->
+                                            </tr><!-- comment -->
+                                            <tr>
+                                                <td>Small Vanilla Ice Cream</td>
+                                                <td class="col-md-4 r">$1.50</td><!-- comment -->
+                                            </tr><!-- comment -->
+                                            <tr>
+                                                <td>Total Cost Before Tax</td>
+                                                <td class="col-md-4 r">$8.25</td><!-- comment -->
+                                            </tr>
+                                            <tr class="doubleline">
+                                                <td>Plus 6% tax</td>
+                                                <td class="col-md-4 r">$0.50</td><!-- comment -->
+                                            </tr><!-- comment -->
+                                            <tr >
+                                                <td>Total Cost</td>
+                                                <td class="col-md-4 r">$8.75</td><!-- comment -->
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-md-12 tall"></div>
+                                
+                                <div class="col-md-1"></div>
+                                <div class="col-md-11">
+                                    <h2 >Customer Information</h2><!-- comment -->
+
+                                    <form role="form">    
+                                        <p>Please enter your name. <input type="text" name = "name" size="24"><!-- comment --></p><!-- comment -->
+
+                                        <p>Please enter your email address. <input type="email" name="email"><!-- comment --></p>
+
+                                        <p>Please select the type of payment you are using:</p>
+                                        
+                                        <div style="justify-content: space-evenly;">
+                                            Debit <input type="radio" name="payment_type" id="paymentType" value="Debit">
+                                            Credit <input type="radio" name="payment_type" id="paymentType" value="Credit"><!-- comment -->
+                                            Gift Card <input type="radio" name="payment_type" id="paymentType" value="Gift">
+                                        </div>
+                                            
+
+                                        <p>Please enter your card number:
+                                            <input type="password" name="card_number" size="24"><!-- comment -->
+                                        </p><!-- comment -->
+
+                                        <div class="checkbox">Is $8:75 okay?
+                                            <input type="checkbox" value="okay">
+                                        </div><!-- comment -->
+
+
+
+                                        <br><input type="submit" >
+                                    </form> 
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 right">
+                                <img src="images/logo2caramelsprinkles.png" class="cone"/>
+                        </div><!-- comment -->
+                        
+                        
+                    </div> 
+                     
+                </div>
+                <div class="col-md-1 b sixth" id="rightside"></div><!-- comment -->
+            </div> 
+            
+            
+            
+            
+            <div class="row b tall second" style="color: darkolivegreen">
+
+                    <div class="col-md-4" id="contact">
+                        <h3>Contact Information</h3>
+                        <p>Ultimate Ice Cream Inc. </p><!-- comment -->
+                        <address>123 Mystery Ln., Somewhere, Random 12345 USA</address>
+                        <p>Phone: 719-484-0749 *</p>
+                        <p>* <span>Do not call as phone number calls Leadville Ranger Station.</span></p>
+                        
+                    </div><!-- comment -->
+
+                    
+                    <div class="col-md-4">
+                        <p>Disclaimer: Contents many vary etc. etc. etc...</p>
+                        <p>All credits are due to someone somewhere.</p>
+                    </div><!-- comment -->
+                    
+                    <div class="col-md-4">
+                        <img src="images/logop6.png" class="cone"/>
+                    </div><!-- comment -->
+
+
+                </div> 
+                
+                
+        </div>
+        
+        
+        
+    </body>
+</html>
