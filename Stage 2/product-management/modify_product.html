@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./add_product.html">Add Product</a></li>
+                <li style="padding: 10px;"><a href="./modify_product.html">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="./find_product.html">Find Product</a></li>
+                <li style="padding: 10px;"><a href="./remove_product.html">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="./list_product.html">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+        <form name="modify_product" action="index.html" method="POST">
+            <table>
+                <tr>
+                    <td style="text-align: left;"><label>Enter Product ID</label> </td>
+                    <td><input type="text" name="product_id" value="XX563" /></td><td><input class="btn btn-default" type="button" value="Find" name="find_product" /></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Product Name</label> </td>
+                    <td><input type="text" name="product_name" value="product_id" /></td><td></td>
+                </tr>
+                
+                <tr>
+                    <td style="text-align: left;"><label>New Distributor</label></td>
+                    <td> <input type="text" name="distributor" value="Distributor" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Unit Price</label> </td>
+                    <td><input type="text" name="unit_price" value="$5" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Quantity</label></td>
+                    <td><input type="text" name="quantity" value="1" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Path</label></td>
+                    <td><input  type="file" name="file_path" value="1" /></td><td></td>
+                </tr>
+                <tr>
+                    <td><input class="btn btn-default" type="submit" value="Modify" name="update_product" /></td>
+                    <td></td><td><a href="../admin_index.html">Return to admin console</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</article>
+</section>
+<footer>
+<h6>CS-334 Project </h6>
+</footer>
+</body>
+
+</html>
