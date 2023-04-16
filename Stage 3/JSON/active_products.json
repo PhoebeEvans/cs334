@@ -1,0 +1,152 @@
+[
+    {
+      "id": 1,
+      "name": "Ultimate Double-Chocolate",
+      "quantity": 50,
+      "vendor": "IceCreamCorp",
+      "cost": 5.80,
+      "markup": 1.5,
+      "image": "1.JPG",
+      "totalCost": 5.80
+    },
+    {
+      "id": 2,
+      "name": "Vanilla",
+      "quantity": 80,
+      "vendor": "IceCreamCorp",
+      "cost": 5.80,
+      "markup": 1.4,
+      "image": "2.JPG",
+      "totalCost": 5.80
+    },
+    {
+      "id": 3,
+      "name": "Strawberry",
+      "quantity": 30,
+      "vendor": "IceCreamExpress",
+      "cost": 6.20,
+      "markup": 1.6,
+      "image": "3.PNG",
+      "totalCost": 6.20
+    },
+    {
+      "id": 4,
+      "name": "Mint Chocolate Chip",
+      "quantity": 45,
+      "vendor": "IceCreamCorp",
+      "cost": 6.00,
+      "markup": 1.5,
+      "image": "4.PNG",
+      "totalCost": 6.00
+    },
+    {
+      "id": 5,
+      "name": "Cookie Dough",
+      "quantity": 60,
+      "vendor": "IceCreamCorp",
+      "cost": 6.10,
+      "markup": 1.4,
+      "image": "5.PNG",
+      "totalCost": 6.10
+    },
+    {
+      "id": 6,
+      "name": "Rocky Road",
+      "quantity": 40,
+      "vendor": "IceCreamExpress",
+      "cost": 6.50,
+      "markup": 1.6,
+      "image": "6.PNG",
+      "totalCost": 6.50
+    },
+    {
+      "id": 7,
+      "name": "Rum Raisin",
+      "quantity": 35,
+      "vendor": "IceCreamCorp",
+      "cost": 6.30,
+      "markup": 1.5,
+      "image": "7.PNG",
+      "totalCost": 6.30
+    },
+    {
+      "id": 8,
+      "name": "Pistachio",
+      "quantity": 55,
+      "vendor": "IceCreamCorp",
+      "cost": 6.40,
+      "markup": 1.4,
+      "image": "8.PNG",
+      "totalCost": 6.40
+    },
+    {
+      "id": 9,
+      "name": "Coffee",
+      "quantity": 65,
+      "vendor": "IceCreamExpress",
+      "cost": 6.10,
+      "markup": 1.6,
+      "image": "9.PNG",
+      "totalCost": 6.10
+    },
+    {
+      "id": 10,
+      "name": "Caramel Swirl",
+      "quantity": 60,
+      "vendor": "IceCreamCorp",
+      "cost": 5.90,
+      "markup": 1.5,
+      "image": "10.PNG",
+      "totalCost": 5.90
+    },
+    {
+      "id": 11,
+      "name": "Lemon Sorbet",
+      "quantity": 70,
+      "vendor": "IceCreamCorp",
+      "cost": 5.80,
+      "markup": 1.4,
+      "image": "11.PNG",
+      "totalCost": 5.80
+    },
+    {
+      "id": 12,
+      "name": "Mango",
+      "quantity": 45,
+      "vendor": "IceCreamExpress",
+      "cost": 6.20,
+      "markup": 1.6,
+      "image": "12.PNG",
+      "totalCost": 6.20
+    },
+    {
+      "id": 13,
+      "name": "Peach",
+      "quantity": 50,
+      "vendor": "IceCreamCorp",
+      "cost": 5.90,
+      "markup": 1.5,
+      "image": "13.PNG",
+      "totalCost": 5.90
+    },
+    {
+      "id": 14,
+      "name": "Cookies and Cream",
+      "quantity": 80,
+      "vendor": "IceCreamCorp",
+      "cost": 6.00,
+      "markup": 1.4,
+      "image": "14.PNG",
+      "totalCost": 6.00
+    },
+    {
+      "id": 15,
+      "name": "Blueberry Cheesecake",
+      "quantity": 40,
+      "vendor": "IceCreamExpress",
+      "cost": 6.30,
+      "markup": 1.6,
+      "image": "15.PNG",
+      "totalCost": 6.30
+    }
+]

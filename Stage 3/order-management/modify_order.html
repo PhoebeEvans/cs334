@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="order">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./modify_order.html">Modify Order</a></li>
+                <li style="padding: 10px;"><a href="./find_order.html">Find Order</a></li>
+                <li style="padding: 10px;"><a href="./list_order.html">List Order</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+        <form name="modify_order" action="index.html" method="POST">
+            <table>
+                <tr>
+                    <td style="text-align: left;"><label>Enter Order ID</label> </td>
+                    <td><input type="text" name="order_id" value="XX563" /></td><td><input class="btn btn-default" type="button" value="Find" name="find_product" /></td>
+                </tr>
+                
+                <tr>
+                    <td style="text-align: left;"><label>New Quantity</label></td>
+                    <td> <input type="number" name="quantity" value="Quantity" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Total Cost ($)</label> </td>
+                    <td><input type="text" name="unit_price" value="$5" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Date</label></td>
+                    <td><input type="date" name="date" value="01-01-2023" /></td><td></td>
+                </tr>
+                <tr>
+                    <td><input class="btn btn-default" type="submit" value="Modify" name="update_order" /></td>
+                    <td></td><td><a href="../admin_index.html">Return to admin console</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</article>
+</section>
+<footer>
+<h6>CS-334 Project </h6>
+</footer>
+</body>
+
+</html>
