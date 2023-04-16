@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "email": "ameliaanderson@gmail.com",
+    "date": "Fri Apr 14 2023 15:44:12 GMT-0400 (Eastern Daylight Time)",
+    "totalAmount": 15.0,
+    "paymentMethod": "Credit",
+    "paymentStatus": "Completed",
+    "orderItems": [[1, 2], [3, 1]]
+  },
+  
+  {
+    "id": 2,
+    "email": "stuart22ranch@gmail.com",
+    "date": "Fri Apr 14 2023 20:41:57 GMT-0400 (Eastern Daylight Time)",
+    "totalAmount": 20.0,
+    "paymentMethod": "Credit",
+    "paymentStatus": "Completed",
+    "orderItems": [[1, 2], [2, 2]]
+  }
+  
+]
