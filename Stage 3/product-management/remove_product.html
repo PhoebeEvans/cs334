@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Remove Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+    <script type = "text/javascript">
+         
+        //prefixes of implementation that we want to test
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || 
+        window.webkitIndexedDB || window.msIndexedDB;
+        
+        //prefixes of window.IDB objects
+        window.IDBTransaction = window.IDBTransaction || 
+        window.webkitIDBTransaction || window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || 
+        window.msIDBKeyRange
+        
+        if (!window.indexedDB) {
+           window.alert("Your browser doesn't support a stable version of IndexedDB.")
+        }
+        
+        const product_data = [];
+        var db;
+        var request = window.indexedDB.open("ultimateIceCreamDatabase", 1);
+        
+        request.onerror = function(event) {
+           console.log("error: ");
+        };
+        
+        request.onsuccess = function(event) {
+           db = request.result;
+           console.log("success: "+ db);
+        };
+        
+        request.onupgradeneeded = function(event) {
+           var db = event.target.result;
+           var objectStore = db.createObjectStore("product", {keyPath: "id"});
+           
+           for (var i in product_data) {
+              objectStore.add(product_data[i]);
+           }
+        }
+        
+        
+        function remove() {
+            var product_id_value  = parseInt(document.getElementById("product_id").value)
+           var request = db.transaction(["product"], "readwrite")
+           .objectStore("product")
+           .delete(product_id_value);
+           
+           request.onsuccess = function(event) {
+              alert("Product : "+product_id_value+" has been remove from your database.");
+           };
+        }
+
+        function find(){
+            var transaction = db.transaction(["product"]);
+            var objectStore = transaction.objectStore("product");
+            var product_id_value = parseInt(document.getElementById("product_id").value)
+            var request = objectStore.get(product_id_value);
+            
+            request.onerror = function(event) {
+               alert("Unable to retrieve data from database!");
+            };
+            
+            request.onsuccess = function(event) {
+               // Do something with the request.result!
+               if(request.result) {
+                  alert("Flavor: " + request.result.flavor + ",ID: " + request.result.id + 
+                  ", Vendor: " + request.result.vendor+" Unite Price: " + request.result.price + 
+                  ",Quantity: " + request.result.quantity+",Markup: " + request.result.markup+
+                  ",Description: " + request.result.desc);
+               } else {
+                  alert(product_id_value+" couldn't be found in your database!");
+               }
+            };
+        }
+     </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./add_product.html">Add Product</a></li>
+                <li style="padding: 10px;"><a href="./modify_product.html">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="./find_product.html">Find Product</a></li>
+                <li style="padding: 10px;"><a href="./remove_product.html">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="./list_product.html">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+                <form name="remove_product" action="index.html" method="POST">
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><label>Enter Product ID</label> </td>
+                            <td><input type="text" name="product_id" id="product_id" value="1" /></td>
+                            <td><input class="btn btn-default" type="button" value="Find" name="find_product" onclick="find()"/></td>
+                        </tr>
+
+                        <tr>
+                            <td><input class="btn btn-default" type="button" value="Remove" name="update_product" onclick="remove()"/>
+                            </td>
+                            <td></td>
+                            <td><a href="../admin_index.html">Return to admin console</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <p><h6>CS-334 Project </h6></p>
+    </footer>
+    </body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Listing Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+    <script type="text/javascript">
+        //prefixes of implementation that we want to test
+        window.indexedDB = window.indexedDB || window.mozIndexedDB ||
+            window.webkitIndexedDB || window.msIndexedDB;
+
+        //prefixes of window.IDB objects
+        window.IDBTransaction = window.IDBTransaction ||
+            window.webkitIDBTransaction || window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange ||
+            window.msIDBKeyRange
+
+        if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB.")
+        }
+
+        var db;
+        var request = window.indexedDB.open("ultimateIceCreamDatabase", 1);
+
+        request.onerror = function (event) {
+            console.log("error: ");
+        };
+
+        request.onsuccess = function (event) {
+            db = request.result;
+            console.log("success: " + db);
+        };
+
+        request.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            var objectStore = db.createObjectStore("product", { keyPath: "id" });
+        }
+
+        function readAll() {
+            document.getElementById("thetable").innerHTML = ''
+            var table = document.createElement("table");
+            table.border = "1";
+            // var tbody = document.createElement("tbody");
+
+            // table.appendChild(tbody);
+            var objectStore = db.transaction("product", "readonly").objectStore("product");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            var cell7 = row.insertCell(6);
+            var cell8 = row.insertCell(7);
+            cell1.innerHTML = "Flavor";
+            cell2.innerHTML = "Product ID";
+            cell3.innerHTML = "Vendor";
+            cell4.innerHTML = "Unit Price";
+            cell5.innerHTML = "Quantity";
+            cell6.innerHTML = "Markup";
+            cell7.innerHTML = "Description";
+            cell8.innerHTML = "Path Images";
+            objectStore.openCursor().onsuccess = function (event) {
+                //
+                //var table = document.getElementById("myTable");
+
+                //
+                var cursor = event.target.result;
+                var row = table.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                var cell6 = row.insertCell(5);
+                var cell7 = row.insertCell(6);
+                var cell8 = row.insertCell(7);
+
+                if (cursor) {
+                    cell1.innerHTML = cursor.value.flavor;
+                    cell2.innerHTML = cursor.value.id;
+                    cell3.innerHTML = cursor.value.vendor;
+                    cell4.innerHTML = cursor.value.price;
+                    cell5.innerHTML = cursor.value.quantity;
+                    cell6.innerHTML = cursor.value.markup;
+                    cell7.innerHTML = cursor.value.desc;
+                    cell8.innerHTML = cursor.value.img;
+                    cursor.continue();
+                }
+
+            }
+            document.getElementById("thetable").append(table);
+        }
+        function readSelected() {
+            
+            
+            var product_idSelected = document.getElementById("product_id").checked
+            var quantitySelected = document.getElementById("quantity").checked
+            var priceSelected = document.getElementById("price").checked
+            var vendorSelected = document.getElementById("vendor").checked
+            var flavorSelected = document.getElementById("flavor").checked
+            var markupSelected = document.getElementById("markup").checked
+            var descSelected = document.getElementById("desc").checked
+            var imgSelected = document.getElementById("img").checked
+
+            var objectStore = db.transaction("product", "readonly").objectStore("product");
+            document.getElementById("thetable").innerHTML = ''
+            var table = document.createElement("table");
+            table.border = "1";
+            var row = table.insertRow(0);
+            var index=0
+            if (flavorSelected) {var cell1 = row.insertCell(index);index=index+1;}
+            if (product_idSelected) {var cell2 = row.insertCell(index);index=index+1;}
+            if (quantitySelected) {var cell3 = row.insertCell(index);index=index+1;}
+            if (priceSelected) {var cell4 = row.insertCell(index);index=index+1;}
+            if (vendorSelected){ var cell5 = row.insertCell(index);index=index+1;}
+            if (markupSelected) {var cell6 = row.insertCell(index);index=index+1;}
+            if (descSelected) {var cell7 = row.insertCell(index);index=index+1;}
+            if (imgSelected) {var cell8 = row.insertCell(index);index=index+1;}
+
+            if (flavorSelected) {cell1.innerHTML = "Flavor";}
+            if (product_idSelected) {cell2.innerHTML = "Product ID";}
+            if (quantitySelected) {cell3.innerHTML = "Vendor";}
+            if (priceSelected) {cell4.innerHTML = "Unit Price";}
+            if (vendorSelected) {cell5.innerHTML = "Quantity";}
+            if (markupSelected) {cell6.innerHTML = "Markup";}
+            if (descSelected) {cell7.innerHTML = "Description";}
+            if (imgSelected) {cell8.innerHTML = "Path Images";}
+            objectStore.openCursor().onsuccess = function (event) {
+                //
+                //var table = document.getElementById("myTable");
+
+                //
+                var cursor = event.target.result;
+                var row = table.insertRow(-1);
+                index = 0
+                if (flavorSelected) {var cell1 = row.insertCell(index);index=index+1;}
+                if (product_idSelected) {var cell2 = row.insertCell(index);index=index+1;}
+                if (quantitySelected) {var cell3 = row.insertCell(index);index=index+1;}
+                if (priceSelected) {var cell4 = row.insertCell(index);index=index+1;}
+                if (vendorSelected) {var cell5 = row.insertCell(index);index=index+1;}
+                if (markupSelected) {var cell6 = row.insertCell(index);index=index+1;}
+                if (descSelected) {var cell7 = row.insertCell(index);index=index+1;}
+                if (imgSelected) {var cell8 = row.insertCell(index);index=index+1;}
+
+                if (cursor) {
+                    if (flavorSelected) cell1.innerHTML = cursor.value.flavor;
+                    if (product_idSelected)cell2.innerHTML = cursor.value.id;
+                    if (quantitySelected)cell3.innerHTML = cursor.value.vendor;
+                    if (priceSelected)cell4.innerHTML = cursor.value.price;
+                    if (vendorSelected)cell5.innerHTML = cursor.value.quantity;
+                    if (markupSelected)cell6.innerHTML = cursor.value.markup;
+                    if (descSelected)cell7.innerHTML = cursor.value.desc;
+                    if (imgSelected)cell8.innerHTML = cursor.value.img;
+                    cursor.continue();
+                }
+
+            }
+            document.getElementById("thetable").append(table);
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./add_product.html">Add Product</a></li>
+                <li style="padding: 10px;"><a href="./modify_product.html">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="./find_product.html">Find Product</a></li>
+                <li style="padding: 10px;"><a href="./remove_product.html">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="./list_product.html">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div id="thetable">
+                <form name="display_product" action="index.html" method="POST">
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="btn btn-default" onclick="readAll()">Display All Columns </button>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="flavor" name="flavor" checked>
+                                            <label for="flavor">Flavor</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="product_id" name="product_id" checked>
+                                            <label for="product_id">Product ID</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vendor" name="vendor" checked>
+                                            <label for="vendor">Vendor</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="price" name="price" checked>
+                                            <label for="price">Unit Price</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="markup" name="markup" checked>
+                                            <label for="markup">Markup</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="desc" name="desc" checked>
+                                            <label for="desc">Desription</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="quantity" name="quantity" checked>
+                                            <label for="quantity">Quantity</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="img" name="img" checked>
+                                            <label for="img">Path Images</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btn btn-default" onclick="readSelected()">Display Selected
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </article>
+    </section>
+    <footer>
+        <p>
+        <h6>CS-334 Project </h6>
+        </p>
+    </footer>
+</body>
+
+</html>

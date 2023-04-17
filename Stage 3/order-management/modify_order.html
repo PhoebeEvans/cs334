@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+    <script type="text/javascript">
+
+        //prefixes of implementation that we want to test
+        window.indexedDB = window.indexedDB || window.mozIndexedDB ||
+            window.webkitIndexedDB || window.msIndexedDB;
+
+        //prefixes of window.IDB objects
+        window.IDBTransaction = window.IDBTransaction ||
+            window.webkitIDBTransaction || window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange ||
+            window.msIDBKeyRange
+
+        if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB.")
+        }
+
+        var db;
+        var request = window.indexedDB.open("ultimateIceCreamDatabase", 1);
+
+        request.onerror = function (event) {
+            console.log("error: ");
+        };
+
+        request.onsuccess = function (event) {
+            db = request.result;
+            console.log("success: " + db);
+        };
+
+        request.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            var objectStore = db.createObjectStore("transactions", { keyPath: "id" });
+
+            for (var i in product_data) {
+                objectStore.add(product_data[i]);
+            }
+        }
+        function getOrderDetails() {
+            var transaction = db.transaction(["transactions"]);
+            var objectStore = transaction.objectStore("transactions");
+            var product_id_value = parseInt(document.getElementById("order_id").value)
+            var request = objectStore.get(product_id_value);
+
+            request.onerror = function (event) {
+                alert("Unable to retrieve data from database!");
+            };
+
+            request.onsuccess = function (event) {
+                // Do something with the request.result!
+                if (request.result) {
+                    document.getElementById("order_id").value = request.result.id
+                    document.getElementById("email_id").value = request.result.email
+                    document.getElementById("date_id").value = request.result.date
+                    document.getElementById("total-amount_id").value = request.result.totalAmount
+                    document.getElementById("paymentMethod_id").value = request.result.paymentMethod
+                    document.getElementById("paymentStatus_id").value = request.result.paymentStatus
+                } else {
+                    alert(product_id_value + " couldn't be found in your database!");
+                }
+            };
+        }
+        function updateOrder() {
+            var id_value = parseInt(document.getElementById("order_id").value)
+            var email_value = String(document.getElementById("email_id").value)
+            var date_value = String(document.getElementById("date_id").value)
+            var totalAmount_value = parseFloat(document.getElementById("total-amount_id").value)
+            var paymentMethod_value = String(document.getElementById("paymentMethod_id").value)
+            var paymentStatus_value = String(document.getElementById("paymentStatus_id").value)
+            var request = db.transaction(["transactions"], "readwrite")
+                .objectStore("transactions")
+                .put({
+                    id: id_value,
+                    email: email_value,
+                    date: date_value,
+                    totalAmount: totalAmount_value,
+                    paymentMethod: paymentMethod_value,
+                    paymentStatus: paymentStatus_value
+                });
+
+            request.onsuccess = function (event) {
+                alert("Product : " + id_value + " has been added to your database.");
+            };
+
+            request.onerror = function (event) {
+                alert("Unable to add data\r\n" + id_value + " is aready exist in your database! ");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="order">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./modify_order.html">Modify Order</a></li>
+                <li style="padding: 10px;"><a href="./find_order.html">Find Order</a></li>
+                <li style="padding: 10px;"><a href="./list_order.html">List Order</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+        <form name="modify_order" action="index.html" method="POST">
+            <table>
+                <tr>
+                    <td style="text-align: left;"><label>Enter Order ID</label> </td>
+                    <td><input type="text" id="order_id" value="301" /></td><td><input class="btn btn-default" type="button" value="Find" name="find_product" onclick="getOrderDetails()" /></td>
+                </tr>
+                
+                <tr>
+                    <td style="text-align: left;"><label>New Email</label></td>
+                    <td> <input type="text" id="email_id" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Date</label> </td>
+                    <td><input type="date" id="date_id" name="unit_price" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Total Amount</label></td>
+                    <td><input type="text" id="total-amount_id" name="date"  /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Payment Method</label></td>
+                    <td><input type="text" id="paymentMethod_id" name="date" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Payment Status</label></td>
+                    <td><input type="text" id="paymentStatus_id" name="date"  /></td><td></td>
+                </tr>
+                <tr>
+                    <td><input class="btn btn-default" type="button" value="Modify" name="update_order" onclick="updateOrder();" /></td>
+                    <td></td><td><a href="../admin_index.html">Return to admin console</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</article>
+</section>
+<footer>
+<h6>CS-334 Project </h6>
+</footer>
+</body>
+
+</html>

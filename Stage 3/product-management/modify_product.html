@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../css/product.css" rel="stylesheet">
+    <script type="text/javascript">
+
+        //prefixes of implementation that we want to test
+        window.indexedDB = window.indexedDB || window.mozIndexedDB ||
+            window.webkitIndexedDB || window.msIndexedDB;
+
+        //prefixes of window.IDB objects
+        window.IDBTransaction = window.IDBTransaction ||
+            window.webkitIDBTransaction || window.msIDBTransaction;
+        window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange ||
+            window.msIDBKeyRange
+
+        if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB.")
+        }
+
+        var db;
+        var request = window.indexedDB.open("ultimateIceCreamDatabase", 1);
+
+        request.onerror = function (event) {
+            console.log("error: ");
+        };
+
+        request.onsuccess = function (event) {
+            db = request.result;
+            console.log("success: " + db);
+        };
+
+        request.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            var objectStore = db.createObjectStore("product", { keyPath: "id" });
+
+            for (var i in product_data) {
+                objectStore.add(product_data[i]);
+            }
+        }
+        function getProductDetails() {
+            var transaction = db.transaction(["product"]);
+            var objectStore = transaction.objectStore("product");
+            var product_id_value = parseInt(document.getElementById("product_id").value)
+            var request = objectStore.get(product_id_value);
+
+            request.onerror = function (event) {
+                alert("Unable to retrieve data from database!");
+            };
+
+            request.onsuccess = function (event) {
+                // Do something with the request.result!
+                if (request.result) {
+                    alert("Flavor : " + request.result.flavor + ",ID: " + request.result.id +
+                        ", Vendor: " + request.result.vendor + " Unite Price: " + request.result.price +
+                        ",Quantity: " + request.result.quantity);
+                    document.getElementById("flavor").value = request.result.flavor
+                    document.getElementById("product_id").value = request.result.id
+                    document.getElementById("vendor").value = request.result.vendor
+                    document.getElementById("price").value = request.result.price
+                    document.getElementById("quantity").value = request.result.quantity
+                    document.getElementById("markup").value = request.result.markup
+                    document.getElementById("desc").value = request.result.desc
+                    document.getElementById("img").value = request.result.img
+                } else {
+                    alert(product_id_value + " couldn't be found in your database!");
+                }
+            };
+        }
+        function updateProduct() {
+            var id_value = parseInt(document.getElementById("product_id").value)
+            var flavor_value = String(document.getElementById("flavor").value)
+            var quantity_value = String(document.getElementById("quantity").value)
+            var price_value = String(document.getElementById("price").value)
+            var vendor_value = String(document.getElementById("vendor").value)
+            var markup_value = String(document.getElementById("markup").value)
+            var desc_value = String(document.getElementById("desc").value)
+            var img_value = String(document.getElementById("img").value)
+            var request = db.transaction(["product"], "readwrite")
+                .objectStore("product")
+                .put({
+                    id: id_value,
+                    flavor: flavor_value,
+                    quantity: quantity_value,
+                    price: price_value,
+                    vendor: vendor_value,
+                    markup: markup_value,
+                    desc: desc_value,
+                    img: img_value
+                });
+
+            request.onsuccess = function (event) {
+                alert("Product : " + id_value + " has been added to your database.");
+            };
+
+            request.onerror = function (event) {
+                alert("Unable to add data\r\n" + id_value + " is aready exist in your database! ");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="./add_product.html">Add Product</a></li>
+                <li style="padding: 10px;"><a href="./modify_product.html">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="./find_product.html">Find Product</a></li>
+                <li style="padding: 10px;"><a href="./remove_product.html">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="./list_product.html">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+                <form name="modify_product" action="index.html" method="POST">
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><label>Enter Product ID</label> </td>
+                            <td><input type="text" name="product_id" id="product_id" value="1" /></td>
+                            <td><input class="btn btn-default" type="button" value="Find" name="find_product"
+                                    onclick="getProductDetails()" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Flavor</label> </td>
+                            <td><input type="text" name="flavor" id="flavor" value="" /></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;"><label>New Vendor</label></td>
+                            <td> <input type="text" name="vendor" id="vendor" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Unit Price</label> </td>
+                            <td><input type="text" name="price" id="price" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Quantity</label></td>
+                            <td><input type="text" name="quantity" id="quantity" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Markup</label></td>
+                            <td><input type="text" name="markup" id="markup" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Description</label></td>
+                            <td><input type="text" name="desc" id="desc" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Path</label></td>
+                            <td><input type="file" name="img" id="img" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input class="btn btn-default" type="button" value="Modify" name="update_product"
+                                    onclick="updateProduct()" />
+                            </td>
+                            <td></td>
+                            <td><a href="../admin_index.html">Return to admin console</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <h6>CS-334 Project </h6>
+    </footer>
+</body>
+
+</html>

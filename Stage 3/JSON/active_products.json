@@ -1,0 +1,153 @@
+[
+  {
+    "id": 1,
+    "flavor": "Ultimate Double-Chocolate",
+    "quantity": 50,
+    "price": 5.80,
+    "vendor": "IceCreamCorp",
+    "markup": 1.5,
+    "desc": "Rich, creamy double chocolate ice cream for the ultimate chocolate lover.",
+    "img": "1.jpg"
+  },
+  {
+    "id": 2,
+    "flavor": "Vanilla",
+    "quantity": 80,
+    "price": 5.80,
+    "vendor": "IceCreamCorp",
+    "markup": 1.4,
+    "desc": "Classic vanilla ice cream made with the finest vanilla beans.",
+    "img": "2.jpg"
+  },
+  {
+    "id": 3,
+    "flavor": "Strawberry",
+    "quantity": 30,
+    "price": 6.20,
+    "vendor": "IceCreamExpress",
+    "markup": 1.6,
+    "desc": "Sweet and refreshing strawberry ice cream made with real strawberries.",
+    "img": "3.png"
+  },
+  {
+    "id": 4,
+    "flavor": "Mint Chocolate Chip",
+    "quantity": 45,
+    "price": 6.00,
+    "vendor": "IceCreamCorp",
+    "markup": 1.5,
+    "desc": "Cool and creamy mint ice cream with rich chocolate chips.",
+    "img": "4.png"
+  },
+  {
+    "id": 5,
+    "flavor": "Cookie Dough",
+    "quantity": 60,
+    "price": 6.10,
+    "vendor": "IceCreamCorp",
+    "markup": 1.4,
+    "desc": "Delicious vanilla ice cream loaded with chunks of chocolate chip cookie dough.",
+    "img": "5.png"
+  },
+  {
+    "id": 6,
+    "flavor": "Rocky Road",
+    "quantity": 40,
+    "price": 6.50,
+    "vendor": "IceCreamExpress",
+    "markup": 1.6,
+    "desc": "Chocolate ice cream with a mix of nuts, marshmallows, and chocolate chunks.",
+    "img": "6.png"
+  },
+  {
+    "id": 7,
+    "flavor": "Rum Raisin",
+    "quantity": 35,
+    "price": 6.30,
+    "vendor": "IceCreamCorp",
+    "markup": 1.5,
+    "desc": "A blend of rum-flavored ice cream and plump, juicy raisins.",
+    "img": "7.png"
+  },
+  {
+    "id": 8,
+    "flavor": "Pistachio",
+    "quantity": 55,
+    "price": 6.40,
+    "vendor": "IceCreamCorp",
+    "markup": 1.4,
+    "desc": "Smooth and nutty pistachio ice cream with real pistachio pieces.",
+    "img": "8.png"
+  },
+  {
+    "id": 9,
+    "flavor": "Coffee",
+    "quantity": 65,
+    "price": 6.10,
+    "vendor": "IceCreamExpress",
+    "markup": 1.6,
+    "desc": "Bold and rich coffee ice cream made with real coffee beans.",
+    "img": "9.png"
+  },
+  {
+    "id": 10,
+    "flavor": "Caramel Swirl",
+    "quantity": 60,
+    "price": 5.90,
+    "vendor": "IceCreamCorp",
+    "markup": 1.5,
+    "desc": "Creamy vanilla ice cream swirled with ribbons of sweet caramel.",
+    "img": "10.png"
+  },
+  {
+    "id": 11,
+    "flavor": "Lemon Sorbet",
+    "quantity": 70,
+    "price": 5.80,
+    "vendor": "IceCreamCorp",
+    "markup": 1.4,
+    "desc": "Tangy and refreshing lemon sorbet made with real lemon juice.",
+    "img": "11.png"
+  },
+  {
+    "id": 12,
+    "flavor": "Mango",
+    "quantity": 45,
+    "price": 6.20,
+    "vendor": "IceCreamExpress",
+    "markup": 1.6,
+    "desc": "Exotic and tropical mango ice cream made with ripe, juicy mangoes.",
+    "img": "12.png"
+  },
+  {
+    "id": 13,
+    "flavor": "Peach",
+    "quantity": 50,
+    "price": 5.90,
+    "vendor": "IceCreamCorp",
+    "markup": 1.5,
+    "desc": "Sweet and juicy peach ice cream made with real peaches.",
+    "img": "13.png"
+  },
+  {
+    "id": 14,
+    "flavor": "Cookies and Cream",
+    "quantity": 80,
+    "price": 6.00,
+    "vendor": "IceCreamCorp",
+    "markup": 1.4,
+    "desc": "Creamy vanilla ice cream with chunks of chocolate sandwich cookies.",
+    "img": "14.png"
+  },
+  {
+    "id": 15,
+    "flavor": "Blueberry Cheesecake",
+    "quantity": 40,
+    "price": 6.30,
+    "vendor": "IceCreamExpress",
+    "markup": 1.6,
+    "desc": "Decadent cheesecake ice cream swirled with a tangy blueberry compote.",
+    "img": "15.png"
+  }
+]
+
