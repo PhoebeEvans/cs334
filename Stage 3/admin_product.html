@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Ice Cream Administrator</title>
+
+    <!-- CSS Only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/admin_styles.css">
+
+    <!-- JS Only -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+</head>
+<body id="admin-product">
+    <!-- Top Nav Bar -->
+    <nav class="navbar navbar-expand-lg py-3 px-4 auto-hiding-navbar fixed-top" id="navbar">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <span class="nav-link" id="navbarAdmin">Hello Admin</span>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="navbarLogout" href="./login.html">Logout</a>
+              </li>
+          </ul>
+        </div>
+    </nav>
+      <!-- End Nav Bar -->
+
+      <!-- Side Bar -->
+      <div class="row">
+        <div class="col-1">
+            <nav id="sidebar" class="col sidebar">
+                <a href="#" class="navbar-brand">
+                    <img src="./images/logowhite.png" style="transform: scale(2);" alt="Logo" class="logo">
+                </a>
+                <ul class="nav flex-column vertical-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./admin_index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="./admin_product.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box2" viewBox="0 0 16 16">
+                            <path d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3L2.95.4ZM7.5 1H3.75L1.5 4h6V1Zm1 0v3h6l-2.25-3H8.5ZM15 5H1v10h14V5Z"/>
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="./admin_orders.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                          <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                        </svg>
+                      </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+      </div>
+
+      <!-- End Side Bar -->
+
+      <div class="grid-container" id="product-container">
+        <div class="row ">
+
+            <!-- Product Overview -->
+
+            <div>
+              <section>
+                <div class="card text-center product-page-class" id="product-overview-card">
+                  <!-- Product Overview -->
+                  <div class="card-header" style="text-align: left;">
+                    Active Products
+                  </div>
+                      
+                  <div class="card-body scrollable-card-body">
+                    <!-- Active Products Table -->
+                    <div class="table-wrapper" id="active-products-wrapper">
+                      <table id="active-products-table" class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Quantity (gal)</th>
+                            <th scope="col">Vendor</th>
+                            <th scope="col">Cost ($)</th>
+                            <th scope="col">Markup (%)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- ... -->
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- End Active Products Table -->
+                  </div>
+                  <!-- Product Operation -->
+                  <div id="product-operation">
+                    <table>
+                      <tr>
+                        <th style="padding: 10px;" scope="row">Operation on product</th>
+                        <td style="padding: 10px;"><a href="product-management/add_product.html">Add Product</a></td>
+                        <td style="padding: 10px;"><a href="product-management/modify_product.html">Modify Product</a></td>
+                        <td style="padding: 10px;"><a href="product-management/find_product.html">Find Product</a></td>
+                        <td style="padding: 10px;"><a href="product-management/remove_product.html">Remove Product</a></td>
+                        <td style="padding: 10px;"><a href="product-management/list_product.html">List Product</a></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- End Product Operation -->
+                </div>
+              </section>
+              <!-- END Product Overview -->
+            </div>
+        </div>
+      </div>
+      <script type="module" src="./JS/db.js"></script>
+      <script type="module" src="./JS/admin_script.js"></script>
+</body>
+</html>
+
