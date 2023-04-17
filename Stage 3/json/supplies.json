@@ -1,0 +1,23 @@
+[
+  {
+    "suppliesID": 1,
+    "name": "Cardboard Box 12x12x12",
+    "quantity": 450,
+    "vendor": "Acme Supplies",
+    "cost": 0.80
+  },
+  {
+    "suppliesID": 2,
+    "name": "Styrofoam Insulation",
+    "quantity": 1230,
+    "vendor": "Acme Supplies",
+    "cost": 0.40
+  },
+  {
+    "suppliesID": 3,
+    "name": "Shipping Label Rolls",
+    "quantity": 200,
+    "vendor": "Acme Supplies",
+    "cost": 6.25
+  }
+]
