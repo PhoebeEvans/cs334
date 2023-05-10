@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Remove Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+    <script type = "text/javascript">
+
+        async function remove() {
+            let product_id_value = parseInt(document.getElementById("product_id").value);
+            try {
+                const response = await fetch(`/product/remove/${product_id_value}`, { method: 'DELETE' });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert(`Product: ${product_id_value} has been removed from your database.`);
+                } else {
+                    alert(`Error removing product: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Error removing product:', error);
+            }
+        }
+
+
+        async function find() {
+            let product_id_value = parseInt(document.getElementById("product_id").value);
+            try {
+                const response = await fetch(`/product/find/${product_id_value}`);
+                const result = await response.json();
+                if (result.status === 'success') {
+                    const product = result.product;
+                    alert(`Flavor: ${product.flavor}, ID: ${product.id}, Vendor: ${product.vendor}, Unit Price: ${product.price}, Quantity: ${product.quantity}, Markup: ${product.markup}, Description: ${product.desc}`);
+                } else {
+                    alert(`${product_id_value} couldn't be found in your database!`);
+                }
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        }
+
+     </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/product-management/add_product">Add Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/modify_product">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/find_product">Find Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/remove_product">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/list_product">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+                <form name="remove_product" action="index.html" method="POST">
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><label>Enter Product ID</label> </td>
+                            <td><input type="text" name="product_id" id="product_id" value="1" /></td>
+                            <td><input class="btn btn-default" type="button" value="Find" name="find_product" onclick="find()"/></td>
+                        </tr>
+
+                        <tr>
+                            <td><input class="btn btn-default" type="button" value="Remove" name="update_product" onclick="remove()"/>
+                            </td>
+                            <td></td>
+                            <td><a href="/admin_index">Return to admin console</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <p><h6>CS-334 Project </h6></p>
+    </footer>
+    </body>
+
+</html>

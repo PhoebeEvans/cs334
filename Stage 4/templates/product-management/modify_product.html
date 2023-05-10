@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+    <script type="text/javascript">
+        function validate() {
+            var id_value = String(document.getElementById("product_id").value)
+            var flavor_value = String(document.getElementById("flavor").value)
+            var quantity_value = String(document.getElementById("quantity").value)
+            var price_value = String(document.getElementById("price").value)
+            var vendor_value = String(document.getElementById("vendor").value)
+            var markup_value = String(document.getElementById("markup").value)
+            var desc_value = String(document.getElementById("desc").value)
+            if (id_value ==""){
+                alert("Provide an Id");
+                return false
+            }
+            if (flavor_value ==""){
+                alert("Provide a Flavor");
+                return false
+            }
+            if (id_value ==""){
+                alert("Provide an Id");
+                 return false
+            }
+            if (price_value ==""){
+                alert("Provide a price");
+                return false
+            }
+            if (quantity_value ==""){
+                alert("Provide a Quantity");
+                return false
+            }
+
+            if (vendor_value ==""){
+                alert("Provide a Vendor");
+                return false
+            }
+            if (markup_value ==""){
+                alert("Provide a markup");
+                return false
+            }
+            if (desc_value ==""){
+                alert("Provide a Description");
+                return false
+            }
+            return true
+
+        }
+
+        async function getProductDetails() {
+            const productId = document.getElementById('product_id').value;
+            try {
+                const response = await fetch(`/product/find/${productId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    const product = data.product;
+                    document.getElementById("flavor").value = product.flavor;
+                    document.getElementById("product_id").value = product.id;
+                    document.getElementById("vendor").value = product.vendor;
+                    document.getElementById("price").value = product.price;
+                    document.getElementById("quantity").value = product.quantity;
+                    document.getElementById("markup").value = product.markup;
+                    document.getElementById("desc").value = product.desc;
+                    //document.getElementById("img").value = product.img;
+                } else {
+                    alert(productId + " couldn't be found in your database!");
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error: Unable to retrieve data from database!');
+            }
+        }
+
+        function updateProduct() {
+            const productData = {
+                id: parseInt(document.getElementById("product_id").value),
+                flavor: document.getElementById("flavor").value,
+                quantity: document.getElementById("quantity").value,
+                price: document.getElementById("price").value,
+                vendor: document.getElementById("vendor").value,
+                markup: document.getElementById("markup").value,
+                desc: document.getElementById("desc").value,
+                img: `${document.getElementById('product_id').value}.png`
+            };
+            if (validate()==false){
+                return
+            }
+
+            fetch('/product/modify', {
+                method: 'PUT',
+                body: JSON.stringify(productData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("Product " + productData.id + " has been updated.");
+                    } else {
+                        alert("Error: Unable to update the product.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/product-management/add_product">Add Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/modify_product">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/find_product">Find Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/remove_product">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/list_product">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+                <form name="modify_product" action="index.html" method="POST">
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><label>Enter Product ID</label> </td>
+                            <td><input type="text" name="product_id" id="product_id" value="1" /></td>
+                            <td><input class="btn btn-default" type="button" value="Find" name="find_product"
+                                    onclick="getProductDetails()" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Flavor</label> </td>
+                            <td><input type="text" name="flavor" id="flavor" value="" /></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;"><label>New Vendor</label></td>
+                            <td> <input type="text" name="vendor" id="vendor" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Unit Price</label> </td>
+                            <td><input type="text" name="price" id="price" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Quantity</label></td>
+                            <td><input type="text" name="quantity" id="quantity" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Markup</label></td>
+                            <td><input type="text" name="markup" id="markup" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>New Description</label></td>
+                            <td><input type="text" name="desc" id="desc" value="" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input class="btn btn-default" type="button" value="Modify" name="update_product"
+                                    onclick="updateProduct()" />
+                            </td>
+                            <td></td>
+                            <td><a href="/admin_index">Return to admin console</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <h6>CS-334 Project </h6>
+    </footer>
+</body>
+
+</html>

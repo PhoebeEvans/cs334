@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Listing Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+    <script type="text/javascript">
+
+        async function fetchProductList() {
+            event.preventDefault();
+            try {
+                const response = await fetch('/product/list');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching product list:', error);
+            }
+        }
+
+        async function displayProductTable(columns) {
+            const productList = await fetchProductList();
+
+            let table = document.createElement("table");
+            table.border = "1";
+            table.className = "table";
+
+            let headerRow = table.insertRow(0);
+            columns.forEach(column => {
+                let headerCell = headerRow.insertCell();
+                headerCell.innerHTML = column.label;
+            });
+
+            productList.forEach(product => {
+                let row = table.insertRow();
+
+                columns.forEach(column => {
+                    let cell = row.insertCell();
+                    cell.innerHTML = product[column.key];
+                });
+            });
+
+            let tableContainer = document.getElementById("thetable");
+            tableContainer.innerHTML = "";
+            tableContainer.appendChild(table);
+        }
+
+        function displayAllColumns() {
+            let allColumns = [
+                { key: "flavor", label: "Flavor" },
+                { key: "id", label: "Product ID" },
+                { key: "vendor", label: "Vendor" },
+                { key: "price", label: "Unit Price" },
+                { key: "quantity", label: "Quantity" },
+                { key: "markup", label: "Markup" },
+                { key: "desc", label: "Description" },
+                { key: "img", label: "Path Images" },
+            ];
+
+            displayProductTable(allColumns);
+        }
+
+
+        function displaySelected() {
+            event.preventDefault();
+            let selectedColumns = [
+                { key: "flavor", label: "Flavor", checkboxId: "flavor" },
+                { key: "id", label: "Product ID", checkboxId: "product_id" },
+                { key: "vendor", label: "Vendor", checkboxId: "vendor" },
+                { key: "price", label: "Unit Price", checkboxId: "price" },
+                { key: "quantity", label: "Quantity", checkboxId: "quantity" },
+                { key: "markup", label: "Markup", checkboxId: "markup" },
+                { key: "desc", label: "Description", checkboxId: "desc" },
+                { key: "img", label: "Path Images", checkboxId: "img" },
+            ];
+
+            let columnsToDisplay = selectedColumns.filter(column => {
+                return document.getElementById(column.checkboxId).checked;
+            });
+
+            displayProductTable(columnsToDisplay);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/product-management/add_product">Add Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/modify_product">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/find_product">Find Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/remove_product">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/list_product">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div id="thetable">
+                <form name="display_product">
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="btn btn-default" onclick="displayAllColumns()">Display All Columns </button>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="flavor" name="flavor" checked>
+                                            <label for="flavor">Flavor</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="product_id" name="product_id" checked>
+                                            <label for="product_id">Product ID</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="vendor" name="vendor" checked>
+                                            <label for="vendor">Vendor</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="price" name="price" checked>
+                                            <label for="price">Unit Price</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="markup" name="markup" checked>
+                                            <label for="markup">Markup</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="desc" name="desc" checked>
+                                            <label for="desc">Desription</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="quantity" name="quantity" checked>
+                                            <label for="quantity">Quantity</label>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" id="img" name="img" checked>
+                                            <label for="img">Path Images</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btn btn-default" onclick="displaySelected(event)">Display Selected
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </article>
+    </section>
+    <footer>
+        <p>
+        <h6>CS-334 Project </h6>
+        </p>
+    </footer>
+</body>
+
+</html>

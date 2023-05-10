@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Adding a new Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        function validate() {
+            var id_value = String(document.getElementById("product_id").value)
+            var flavor_value = String(document.getElementById("flavor").value)
+            var quantity_value = String(document.getElementById("quantity").value)
+            var price_value = String(document.getElementById("price").value)
+            var vendor_value = String(document.getElementById("vendor").value)
+            var markup_value = String(document.getElementById("markup").value)
+            var desc_value = String(document.getElementById("desc").value)
+            if (id_value ==""){
+                alert("Provide an Id");
+                return false
+            }
+            if (flavor_value ==""){
+                alert("Provide a Flavor");
+                return false
+            }
+            if (id_value ==""){
+                alert("Provide an Id");
+                 return false
+            }
+            if (price_value ==""){
+                alert("Provide a price");
+                return false
+            }
+            if (quantity_value ==""){
+                alert("Provide a Quantity");
+                return false
+            }
+
+            if (vendor_value ==""){
+                alert("Provide a Vendor");
+                return false
+            }
+            if (markup_value ==""){
+                alert("Provide a markup");
+                return false
+            }
+            if (desc_value ==""){
+                alert("Provide a Description");
+                return false
+            }
+            return true
+
+        }
+
+        async function addProduct() {
+            let productData = {
+                id: document.getElementById('product_id').value,
+                flavor: document.getElementById('flavor').value,
+                quantity: document.getElementById('quantity').value,
+                price: document.getElementById('price').value,
+                vendor: document.getElementById('vendor').value,
+                markup: document.getElementById('markup').value,
+                desc: document.getElementById('desc').value,
+                img: `${document.getElementById('product_id').value}.png`
+            };
+
+            if (validate()==false){
+                return
+            }
+
+            try {
+                const response = await fetch('/product/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    alert('Product added successfully');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error: Unable to add product');
+            }
+        }
+
+
+
+
+
+
+
+        function remove() {
+            var request = db.transaction(["product"], "readwrite")
+                .objectStore("product")
+                .delete("00-03");
+
+            request.onsuccess = function (event) {
+                alert("Kenny's entry has been removed from your database.");
+            };
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="product">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/product-management/add_product">Add Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/modify_product">Modify Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/find_product">Find Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/remove_product">Remove Product</a></li>
+                <li style="padding: 10px;"><a href="/product-management/list_product">List Product</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+                <form name="add_product" id="add-product-form" method="POST">
+                    <table>
+                        <tr>
+                            <td style="text-align: left;"><label>Product ID</label> </td>
+                            <td><input type="text" name="product_id" id="product_id" value="1" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Flavor</label> </td>
+                            <td><input type="text" name="flavor" id="flavor" value="flavor" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Vendor</label></td>
+                            <td> <input type="text" name="vendor" id="vendor" value="Vendor" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Unit Price</label> </td>
+                            <td><input type="text" name="price" id="price" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Quantity</label></td>
+                            <td><input type="text" name="quantity" id="quantity" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Markup</label></td>
+                            <td><input type="text" name="markup" id="markup" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;"><label>Description</label></td>
+                            <td><input type="text" name="desc" id="desc" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><input class="btn btn-default" type="button" value="Save" name="save_product"
+                                    onclick="addProduct()" /></td>
+                            <td><a href="/admin_index">Return to admin console</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <p>
+        <h6>CS-334 Project </h6>
+        </p>
+    </footer>
+    <script>
+        // Add script down here to ensure DOM is fully loaded
+        document.getElementById('add-product-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            addProduct();
+        });
+    </script>
+
+</body>
+
+</html>

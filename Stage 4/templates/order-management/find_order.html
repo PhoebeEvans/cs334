@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Find an Order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <script type = "text/javascript">
+
+        function getOrderDetails(event) {
+            event.preventDefault();
+            var order_id_value = parseInt(document.getElementById("order_id").value);
+
+            fetch(`/transactions/find/${order_id_value}`, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        var transaction = data.transaction;
+                        alert("Transaction ID: " + transaction.id + ", Customer Email: " + transaction.email +
+                            ", Date: " + transaction.date + ", Total Amount: " + transaction.totalAmount +
+                            ", Payment Method: " + transaction.paymentMethod + ", Payment Status: " + transaction.paymentStatus +
+                            ", Order Items: " + transaction.orderItems);
+                    } else {
+                        alert(order_id_value + " couldn't be found in your database!");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+     </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="order">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/order-management/modify_order">Modify Order</a></li>
+                <li style="padding: 10px;"><a href="/order-management/find_order">Find Order</a></li>
+                <li style="padding: 10px;"><a href="/order-management/list_order">List Order</a></li>
+        r
+        </nav>
+        <article>
+            <div>
+        <form name="find_order" action="index.html" method="POST">
+            <table>
+                <tr>
+                    <td style="text-align: left;"><label>Enter Order ID</label> </td>
+                    <td><input type="text" id="order_id" value="301" /></td><td></td>
+                </tr>
+
+                <tr>
+                    <td><input class="btn btn-default" type="button" value="Show" name="update_order" onclick="getOrderDetails(event)"/></td>
+                    <td></td><td><a href="/admin_index">Return to admin console</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</article>
+</section>
+<footer>
+<p><h6>CS-334 Project </h6></p>
+</footer>
+</body>
+
+</html>

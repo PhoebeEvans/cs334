@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modify Order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../../static/css/product.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+
+    <script type="text/javascript">
+
+        function getOrderDetails() {
+            var order_id_value = parseInt(document.getElementById("order_id").value);
+
+            fetch(`/transactions/find/${order_id_value}`, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        var transaction = data.transaction;
+                        document.getElementById("order_id").value = transaction.id;
+                        document.getElementById("email_id").value = transaction.email;
+                        document.getElementById("date_id").value = transaction.date;
+                        document.getElementById("total-amount_id").value = transaction.totalAmount;
+                        document.getElementById("paymentMethod_id").value = transaction.paymentMethod;
+                        document.getElementById("paymentStatus_id").value = transaction.paymentStatus;
+                    } else {
+                        alert(order_id_value + " couldn't be found in your database!");
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function updateOrder() {
+            var id_value = parseInt(document.getElementById("order_id").value);
+            var email_value = String(document.getElementById("email_id").value);
+            var date_value = String(document.getElementById("date_id").value);
+            var totalAmount_value = parseFloat(document.getElementById("total-amount_id").value);
+            var paymentMethod_value = String(document.getElementById("paymentMethod_id").value);
+            var paymentStatus_value = String(document.getElementById("paymentStatus_id").value);
+
+            fetch('/transactions/modify', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id_value,
+                    email: email_value,
+                    date: date_value,
+                    totalAmount: totalAmount_value,
+                    paymentMethod: paymentMethod_value,
+                    paymentStatus: paymentStatus_value
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("Order: " + id_value + " has been updated in your database.");
+                    } else {
+                        alert("Unable to update order. " + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Ultimate Ice Cream</h1>
+    </header>
+    <section class="order">
+        <nav>
+            <ul>
+                <li style="padding: 10px;"><a href="/order-management/modify_order">Modify Order</a></li>
+                <li style="padding: 10px;"><a href="/order-management/find_order">Find Order</a></li>
+                <li style="padding: 10px;"><a href="/order-management/list_order">List Order</a></li>
+            </ul>
+        </nav>
+        <article>
+            <div>
+        <form name="modify_order" action="index.html" method="POST">
+            <table>
+                <tr>
+                    <td style="text-align: left;"><label>Enter Order ID</label> </td>
+                    <td><input type="text" id="order_id" value="301" /></td><td><input class="btn btn-default" type="button" value="Find" name="find_product" onclick="getOrderDetails()" /></td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: left;"><label>New Email</label></td>
+                    <td> <input type="text" id="email_id" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Date</label> </td>
+                    <td><input type="date" id="date_id" name="unit_price" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Total Amount</label></td>
+                    <td><input type="text" id="total-amount_id" name="date"  /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Payment Method</label></td>
+                    <td><input type="text" id="paymentMethod_id" name="date" /></td><td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;"><label>New Payment Status</label></td>
+                    <td><input type="text" id="paymentStatus_id" name="date"  /></td><td></td>
+                </tr>
+                <tr>
+                    <td><input class="btn btn-default" type="button" value="Modify" name="update_order" onclick="updateOrder();" /></td>
+                    <td></td><td><a href="/admin_index">Return to admin console</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</article>
+</section>
+<footer>
+<h6>CS-334 Project </h6>
+</footer>
+</body>
+
+</html>
