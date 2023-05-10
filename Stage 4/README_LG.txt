@@ -1,1 +1,1 @@
-I added the backend to the main shopping page
+I made the main shopping page pull from the database
